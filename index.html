@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="Hugo 0.62.2" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/skeleton.css">
+<link rel="stylesheet" href="css/custom.css">
+<link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+<title>LightSpeech</title>
+</head>
+<body>
+
+<div class="container">
+
+	<header role="banner">
+		
+			
+		
+		
+	</header>
+
+
+	<main role="main">
+		<article itemscope itemtype="https://schema.org/BlogPosting">
+            <h1 class="entry-title" itemprop="headline">LightSpeech: Lightweight Non-autoregressive Multi-speaker Text-to-speech</h1>
+			
+			<section itemprop="entry-text">
+				<h2 id="audio-samples">Audio Samples</h2>
+<p>All of the audio samples use Parallel WaveGAN (PWG) as vocoder. The training data set is LibriTTS. </p>
+<h3 id="comparison-with-other-models">Comparison with Other Models</h3>
+<p><em>The stop at Queenstown, the tedious passage up the Mersey, were things that he noted dimly through his growing impatience.</em></p>
+<table><thead>
+<tr>
+<th style="text-align: center">GT</th>
+<th style="text-align: center">GT (PWG)</th>
+<th style="text-align: center">Tacotron2</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/GT/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/GT_Mel/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/Tacotron2/1.wav" autoplay/></audio></td>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">Tacotron2+Pitch</th>
+<th style="text-align: center">Transformer TTS</th>
+<th style="text-align: center">FastSpeech+PostNet</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/Tacotron2+Pitch/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/Transformer TTS/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/FastSpeech+PostNet/1.wav" autoplay/></audio></td>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">LightSpeech-DC-L</th>
+<th style="text-align: center">LightSpeech-DC-L+PostNet</th>
+<th style="text-align: center">LightSpeech-DC-L(concat)</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-L/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-L+PostNet/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-L(concat)/1.wav" autoplay/></audio></td>
+</tr>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">LightSpeech-DC-SA-L</th>
+<th style="text-align: center">LightSpeech-DC-M</th>
+<th style="text-align: center">LightSpeech-DC-SA-M(concat)</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-L/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-M/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-M/1.wav" autoplay/></audio></td>
+</tr>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">LightSpeech-DC-S</th>
+<th style="text-align: center">LightSpeech-LC-SA-S</th>
+<th style="text-align: center">LightSpeech-DC-SA-S </th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-S/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-LC-SA-S/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-S /1.wav" autoplay/></audio></td>
+</tr>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">LightSpeech-DC-SA-S+PostNet</th>
+<th style="text-align: center">LightSpeech-DC-SA-S+Depthwise Duration Network</th>
+<th style="text-align: center">LightSpeech-DC-SA-S+Depthwise Duration and Post Network</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-S+PostNet/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-S+Depthwise Duration Network/1.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-S+Depthwise Duration and Post Network/1.wav" autoplay/></audio></td>
+</tr>
+</tbody></table>
+				
+
+<p><em>One blanket will be enough to carry, or you may forego the pleasure and burden altogether, as wood for fires is everywhere abundant.</em></p>
+<table><thead>
+<tr>
+<th style="text-align: center">GT</th>
+<th style="text-align: center">GT (PWG)</th>
+<th style="text-align: center">Tacotron2</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/GT/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/GT_Mel/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/Tacotron2/3.wav" autoplay/></audio></td>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">Tacotron2+Pitch</th>
+<th style="text-align: center">Transformer TTS</th>
+<th style="text-align: center">FastSpeech+PostNet</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/Tacotron2+Pitch/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/Transformer TTS/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/FastSpeech+PostNet/3.wav" autoplay/></audio></td>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">LightSpeech-DC-L</th>
+<th style="text-align: center">LightSpeech-DC-L+PostNet</th>
+<th style="text-align: center">LightSpeech-DC-L(concat)</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-L/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-L+PostNet/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-L(concat)/3.wav" autoplay/></audio></td>
+</tr>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">LightSpeech-DC-SA-L</th>
+<th style="text-align: center">LightSpeech-DC-M</th>
+<th style="text-align: center">LightSpeech-DC-SA-M(concat)</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-L/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-M/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-M/3.wav" autoplay/></audio></td>
+</tr>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">LightSpeech-DC-S</th>
+<th style="text-align: center">LightSpeech-LC-SA-S</th>
+<th style="text-align: center">LightSpeech-DC-SA-S </th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-S/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-LC-SA-S/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-S /3.wav" autoplay/></audio></td>
+</tr>
+</tr>
+</tbody></table>
+<table><thead>
+<tr>
+<th style="text-align: center">LightSpeech-DC-SA-S+PostNet</th>
+<th style="text-align: center">LightSpeech-DC-SA-S+Depthwise Duration Network</th>
+<th style="text-align: center">LightSpeech-DC-SA-S+Depthwise Duration and Post Network</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-S+PostNet/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-S+Depthwise Duration Network/3.wav" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/LightSpeech-DC-SA-S+Depthwise Duration and Post Network/3.wav" autoplay/></audio></td>
+</tr>
+</tbody></table>
+
+
+<!-- <table><thead>
+<tr>
+<th style="text-align: center">FastSpeech</th>
+<th style="text-align: center">FastSpeech 2</th>
+<th style="text-align: center">FastSpeech 2s</th>
+</tr></thead><tbody>
+<tr>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/fs1_kd_attention/0000000001.mp3" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/fs2/0000000001.mp3" autoplay/></audio></td>
+<td style="text-align: center"><audio controls="controls" ><source src="audio/fs2s/0000000001.mp3" autoplay/></audio></td>
+</tr>
+</tbody></table> -->
+
+			</section>
+		</article>
+	</main>
+
+
+	
+
+</div>
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-139981676-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+         HTML: ["input/TeX","output/HTML-CSS"],
+         TeX: {
+                Macros: {
+                         bm: ["\\boldsymbol{#1}", 1],
+                         argmax: ["\\mathop{\\rm arg\\,max}\\limits"],
+                         argmin: ["\\mathop{\\rm arg\\,min}\\limits"]},
+                extensions: ["AMSmath.js","AMSsymbols.js"],
+                equationNumbers: { autoNumber: "AMS" } },
+         extensions: ["tex2jax.js"],
+         jax: ["input/TeX","output/HTML-CSS"],
+         tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                    displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                    processEscapes: true },
+         "HTML-CSS": { availableFonts: ["TeX"],
+                       linebreaks: { automatic: true } }
+     });
+ </script>
+
+ <script type="text/x-mathjax-config">
+     MathJax.Hub.Config({
+       tex2jax: {
+         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+       }
+     });
+ </script>
+
+ <script type="text/javascript" async
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML">
+ </script>
+
+
+
+
+</body>
+</html>
+
